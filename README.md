@@ -5,7 +5,7 @@ Home: https://pypi.org/project/jupyter-bokeh
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD 3-Clause
+Feedstock license: BSD-3-Clause
 
 Summary: A Jupyter extension for rendering Bokeh content.
 

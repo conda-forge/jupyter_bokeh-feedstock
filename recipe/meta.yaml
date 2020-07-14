@@ -1,5 +1,5 @@
 {% set name = "jupyter_bokeh" %}
-{% set version = "2.0.2" %}
+{% set version = "2.0.3" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 8dc63198833e478c3231ba5a1c5492bac859f875b1dc4e8190ce308276aa01fc
+  sha256: cfa5ef5b69976461b83fac0371fd3a231dacd6332592c405a72b59d4dc6ab3ef
 
 build:
   number: 0
