@@ -13,15 +13,16 @@ source:
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --install-option="--skip-npm"
 
 requirements:
   host:
     - pip
     - python >=3.6
+    - jupyter-packaging >=0.7.9,<0.8
   run:
     - bokeh >=2.0.0
-    - ipywidgets >=7.5.0
+    - ipywidgets >=7.6.0
     - python >=3.6
 
 test:
@@ -44,3 +45,4 @@ about:
 extra:
   recipe-maintainers:
     - bollwyvl
+    - philippjfr
