@@ -24,6 +24,8 @@ requirements:
     - bokeh >=2.0.0
     - ipywidgets >=7.6.0
     - python >=3.6
+  run_constrained:
+    - jupyterlab >=3,<4
 
 test:
   imports:
@@ -40,7 +42,7 @@ test:
     - cat labextensions | grep "@bokeh/jupyter_bokeh.*OK.*jupyter_bokeh"  # [unix]
   requires:
     - pip
-    - jupyterlab >=3,<4
+    - jupyterlab
 
 about:
   home: https://pypi.org/project/jupyter-bokeh
