@@ -1,5 +1,5 @@
 {% set name = "jupyter_bokeh" %}
-{% set version = "2.0.4" %}
+{% set version = "3.0.0" %}
 
 
 package:
@@ -8,31 +8,41 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: d337306021fb6a8e63556dbe2eaf539a8025aa76d9ba512b18189bfb1f708177
+  sha256: 2b99602ce6bfc3f166af7f98847f1afc154fed41df8185881b05467b7ba47e7a
 
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --install-option="--skip-npm"
 
 requirements:
   host:
+    - jupyter-packaging >=0.7.9,<0.8
     - pip
     - python >=3.6
   run:
     - bokeh >=2.0.0
-    - ipywidgets >=7.5.0
+    - ipywidgets >=7.6.0
     - python >=3.6
+  run_constrained:
+    - jupyterlab >=3,<4
 
 test:
   imports:
     - jupyter_bokeh
     - jupyter_bokeh.nbextension
+    - jupyter_bokeh.widgets
   commands:
     - pip check
     - jupyter nbextension list
+    - jupyter nbextension list 1>nbextensions 2>&1
+    - cat nbextensions | grep "jupyter_bokeh/extension.*enabled"  # [unix]
+    - jupyter labextension list
+    - jupyter labextension list 1>labextensions 2>&1
+    - cat labextensions | grep "@bokeh/jupyter_bokeh.*OK.*jupyter_bokeh"  # [unix]
   requires:
     - pip
+    - jupyterlab
 
 about:
   home: https://pypi.org/project/jupyter-bokeh
@@ -44,3 +54,4 @@ about:
 extra:
   recipe-maintainers:
     - bollwyvl
+    - philippjfr
