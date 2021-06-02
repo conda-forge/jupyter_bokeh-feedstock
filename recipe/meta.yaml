@@ -7,8 +7,10 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 892612078656fa805b5920bd7adf337d1600dc670d0589c3bb46deb8305ad6e0
+  - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+    sha256: 892612078656fa805b5920bd7adf337d1600dc670d0589c3bb46deb8305ad6e0
+  - url: https://raw.githubusercontent.com/bokeh/{{ name }}/{{ version }}/LICENSE.txt
+    sha256: 88233887fb7842a5ca01dd4c93a4688aaafa76f8a0a6df621fd5a7b2f843bfed
 
 build:
   number: 0
