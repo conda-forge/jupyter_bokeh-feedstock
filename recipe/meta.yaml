@@ -41,7 +41,7 @@ test:
   requires:
     - pip
     - jupyterlab
-    - m2-grep # [win]
+    - m2-grep  # [win]
 
 about:
   home: https://pypi.org/project/jupyter-bokeh
