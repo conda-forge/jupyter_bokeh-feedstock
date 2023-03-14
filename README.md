@@ -1,11 +1,11 @@
-About jupyter_bokeh
-===================
+About jupyter_bokeh-feedstock
+=============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jupyter_bokeh-feedstock/blob/main/LICENSE.txt)
 
 Home: https://pypi.org/project/jupyter-bokeh
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jupyter_bokeh-feedstock/blob/main/LICENSE.txt)
 
 Summary: A Jupyter extension for rendering Bokeh content.
 
