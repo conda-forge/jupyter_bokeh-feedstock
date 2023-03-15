@@ -1,4 +1,4 @@
-{% set version = "3.0.5" %}
+{% set version = "3.0.7" %}
 
 package:
   name: jupyter_bokeh
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyter_bokeh/jupyter_bokeh-{{ version }}.tar.gz
-  sha256: 7292599c889596488425a9a4ae13fda0b899d1462efc010ec5befdd627a0c1ad
+  sha256: 2da8c3ddc734d15737bf06126d9e31e84d30f18ac3da3a3f95be40a95a054c87
 
 build:
   number: 0
@@ -17,11 +17,11 @@ requirements:
   host:
     - jupyter-packaging >=0.7.9,<0.8
     - pip
-    - python >=3.6
+    - python >=3.8
   run:
-    - bokeh >=2.4.0
-    - ipywidgets >=7.6.0
-    - python >=3.6
+    - bokeh >=3,<4
+    - ipywidgets >=8,<9
+    - python >=3.8
   run_constrained:
     - jupyterlab >=3,<4
 
@@ -34,22 +34,26 @@ test:
     - pip check
     - jupyter nbextension list
     - jupyter nbextension list 1>nbextensions 2>&1
-    - cat nbextensions | grep "jupyter_bokeh/extension.*enabled"  # [unix]
     - jupyter labextension list
     - jupyter labextension list 1>labextensions 2>&1
-    - cat labextensions | grep "@bokeh/jupyter_bokeh.*OK.*jupyter_bokeh"  # [unix]
+    - grep -iE "jupyter_bokeh/extension.*enabled" nbextensions
+    - grep -iE "@bokeh/jupyter_bokeh.*OK.*jupyter_bokeh" labextensions
   requires:
     - pip
     - jupyterlab
+    - m2-grep  # [win]
 
 about:
   home: https://pypi.org/project/jupyter-bokeh
   summary: A Jupyter extension for rendering Bokeh content.
   license: BSD-3-Clause
-  license_file: LICENSE.txt
+  license_file: 
+    - LICENSE.txt
+    - jupyter_bokeh/labextension/static/third-party-licenses.json
   dev_url: https://github.com/bokeh/jupyter_bokeh
 
 extra:
   recipe-maintainers:
     - bollwyvl
     - philippjfr
+    - mattpap
