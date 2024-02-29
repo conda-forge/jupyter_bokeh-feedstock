@@ -11,19 +11,19 @@ source:
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --install-option="--skip-npm"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - jupyter-packaging >=0.7.9,<0.8
+    - jupyter-packaging
     - pip
-    - python >=3.8
+    - python >=3.9
   run:
-    - bokeh >=3,<4
-    - ipywidgets >=8,<9
-    - python >=3.8
+    - bokeh 3.*
+    - ipywidgets 8.*
+    - python >=3.9
   run_constrained:
-    - jupyterlab >=3,<4
+    - jupyterlab 4.*
 
 test:
   imports:
