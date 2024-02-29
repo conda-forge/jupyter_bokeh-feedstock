@@ -5,17 +5,19 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/py3/j/jupyter_bokeh/jupyter_bokeh-{{ version }}-py3-none-any.whl
-  sha256: fb7b5ce07869e6dfcdc1d88a7f19760ca080a2c1c936985923466658fb49d183
+  url: https://pypi.io/packages/source/j/jupyter_bokeh/jupyter_bokeh-{{ version }}.tar.gz
+  sha256: c517fee6b373b7f62fae218d6fcef2dc768865fc474143da203ef674aa13dc2d
 
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install -vv --no-deps --ignore-installed jupyter_bokeh-{{ version }}-py3-none-any.whl
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - jupyter-packaging
+    - hatch-jupyter-builder >=0.8.2
+    - hatch-nodejs-version
+    - hatchling >=1.5.0
     - pip
     - python >=3.9
   run:
@@ -28,15 +30,11 @@ requirements:
 test:
   imports:
     - jupyter_bokeh
-    - jupyter_bokeh.nbextension
     - jupyter_bokeh.widgets
   commands:
     - pip check
-    - jupyter nbextension list
-    - jupyter nbextension list 1>nbextensions 2>&1
     - jupyter labextension list
     - jupyter labextension list 1>labextensions 2>&1
-    - grep -iE "jupyter_bokeh/extension.*enabled" nbextensions
     - grep -iE "@bokeh/jupyter_bokeh.*OK.*jupyter_bokeh" labextensions
   requires:
     - pip
