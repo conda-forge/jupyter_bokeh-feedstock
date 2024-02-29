@@ -1,4 +1,4 @@
-{% set version = "3.0.7" %}
+{% set version = "4.0.0" %}
 
 package:
   name: jupyter_bokeh
@@ -6,37 +6,35 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyter_bokeh/jupyter_bokeh-{{ version }}.tar.gz
-  sha256: 2da8c3ddc734d15737bf06126d9e31e84d30f18ac3da3a3f95be40a95a054c87
+  sha256: c517fee6b373b7f62fae218d6fcef2dc768865fc474143da203ef674aa13dc2d
 
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv --install-option="--skip-npm"
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - jupyter-packaging >=0.7.9,<0.8
+    - hatch-jupyter-builder >=0.8.2
+    - hatch-nodejs-version
+    - hatchling >=1.5.0
     - pip
-    - python >=3.8
+    - python >=3.9
   run:
-    - bokeh >=3,<4
-    - ipywidgets >=8,<9
-    - python >=3.8
+    - bokeh 3.*
+    - ipywidgets 8.*
+    - python >=3.9
   run_constrained:
-    - jupyterlab >=3,<4
+    - jupyterlab 4.*
 
 test:
   imports:
     - jupyter_bokeh
-    - jupyter_bokeh.nbextension
     - jupyter_bokeh.widgets
   commands:
     - pip check
-    - jupyter nbextension list
-    - jupyter nbextension list 1>nbextensions 2>&1
     - jupyter labextension list
     - jupyter labextension list 1>labextensions 2>&1
-    - grep -iE "jupyter_bokeh/extension.*enabled" nbextensions
     - grep -iE "@bokeh/jupyter_bokeh.*OK.*jupyter_bokeh" labextensions
   requires:
     - pip
@@ -47,7 +45,7 @@ about:
   home: https://pypi.org/project/jupyter-bokeh
   summary: A Jupyter extension for rendering Bokeh content.
   license: BSD-3-Clause
-  license_file: 
+  license_file:
     - LICENSE.txt
     - jupyter_bokeh/labextension/static/third-party-licenses.json
   dev_url: https://github.com/bokeh/jupyter_bokeh
