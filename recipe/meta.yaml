@@ -1,4 +1,4 @@
-{% set version = "4.0.3" %}
+{% set version = "4.0.4" %}
 
 package:
   name: jupyter_bokeh
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/j/jupyter_bokeh/jupyter_bokeh-{{ version }}.tar.gz
-  sha256: 6a1bda1c3d8837f216a017cce9ef443cfdee33dd424f235404c818730def1db3
+  sha256: f70b70b55c2e53b7d34bf6a244d489dd6b7824d0318790181463f481cc2cd1f8
 
 build:
   number: 0
