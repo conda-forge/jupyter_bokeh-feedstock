@@ -5,11 +5,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/j/jupyter_bokeh/jupyter_bokeh-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/j/jupyter_bokeh/jupyter_bokeh-{{ version }}.tar.gz
   sha256: a33d6ab85588f13640b30765fa15d1111b055cbe44f67a65ca57d3593af8245d
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
@@ -19,11 +19,11 @@ requirements:
     - hatch-nodejs-version
     - hatchling >=1.5.0
     - pip
-    - python >=3.9
+    - python {{ python_min }}
   run:
     - bokeh 3.*
     - ipywidgets 8.*
-    - python >=3.9
+    - python >={{ python_min }}
   run_constrained:
     - jupyterlab 4.*
 
@@ -40,6 +40,7 @@ test:
     - pip
     - jupyterlab
     - m2-grep  # [win]
+    - python {{ python_min }}
 
 about:
   home: https://pypi.org/project/jupyter-bokeh
