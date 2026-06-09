@@ -46,7 +46,7 @@ tests:
   - requirements:
       run:
         - jupyterlab
-        - python ${{ python_min }}
+        - python ${{ python_min }}.*
     script:
       - jupyter labextension list
       - |-
